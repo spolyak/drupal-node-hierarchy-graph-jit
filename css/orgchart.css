@@ -1,0 +1,302 @@
+* {
+    font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
+html, body, #vis {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+#header {
+    background: #222;
+    height: 40px;
+    position: relative;
+    z-index: 99999;
+}
+
+
+/* Overflowing the body makes dragging the chart
+a bit nicer.  Nodes don't disappear when they are
+only a few pixels off the screen */
+#vis {
+    height: 150%;
+    width: 150%;
+    position: relative;
+    top: -25%;
+    left: -25%;
+}
+
+#vis-canvas {
+    cursor: url(/libraries/jit/img/openhand.cur), default;
+}
+
+#vis-canvas.dragging {
+    cursor: url(/libraries/jit/img/closedhand.cur), default !important;
+}
+
+#vis-loading {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 10px;
+    z-index: 999;
+    color:#aaa;
+    font-size:13px;
+}
+
+a#vis-logo {
+    left: 10px;
+    position: absolute;
+    top: 10px;
+    z-index: 999;
+    text-decoration: none !important;
+}
+
+a#vis-logo img {
+  float: left;
+}
+
+a span#mark {
+  color: #aaa;
+  text-decoration: none !important;
+  font-size: 14px;
+  padding-left: 5px;
+}
+
+a:hover#vis-logo {
+    color: #FFF !important;
+}
+
+#vis-search {
+    background: url(/libraries/jit/img/search_inv.png) no-repeat 5px 10px;
+    padding: 10px 10px 5px 32px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    z-index: 9999;
+}
+
+#widget {
+    width: 400px;
+}
+
+div.node {
+    background-color: #f1f1f1;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: default;
+    font-size: 0.8em;
+    overflow: hidden;
+    padding-bottom: 2px;
+    text-align: center;
+    width: 198px;
+}
+
+div.node img.avatar {
+    position: absolute;
+    top: 20px;
+    left: 2px;
+    max-height: 40px;
+    max-width: 40px;
+}
+
+div.node div.area {
+    background-color: #d0d0d0;
+    border-bottom: 1px solid #aaa;
+    border-radius: 2px 2px 0px 0px;
+    color: #222;
+    font-size: 9pt;
+    font-weight: bold;
+    line-height: 13pt;
+    margin-bottom: 2px;
+}
+
+div.node div.content {
+    font-size: 8pt;
+    min-height: 40px;
+    padding-left: 45px;
+    padding-right: 10px;
+    text-align: left;
+}
+
+div.node div.details {
+    visibility: hidden;
+    height: 0;
+}
+
+div.node.show-details {
+    box-shadow: 0px 0px 12px rgba(0,0,0,0.5);
+    cursor: pointer !important;
+    margin-left: -40px;
+    width: 278px;
+    z-index: 9999;
+}
+
+div.node.show-details img.avatar {
+    max-height: 55px;
+    max-width: 55px;
+}
+
+div.node.show-details div.content {
+    font-size: 9pt;
+    padding-left: 60px;
+}
+
+div.node.show-details div.name a {
+    font-size: 10pt;
+}
+
+div.node.show-details div.area {
+    font-size: 11pt;
+}
+
+div.node.show-details div.details {
+    visibility: visible;
+    height: auto;
+}
+
+div.node.has-children {
+    background-color: #ececec;
+    position: relative;
+    cursor: url(/libraries/jit/img/expand-chart.cur), pointer;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.has-children:after {
+  position: absolute;
+  right: -8px;
+  top: 40%;
+  border-radius: 30px;
+  content: '\203A';
+  background: #ccc;
+  border: 1px solid #9a9a9a;
+  color: #555;
+  padding: 0px;
+  width: 16px;
+  height: 16px;
+  display: block;
+  font-size: 21px;
+  line-height: 12px;
+}
+
+.selected.has-children:after,
+.show-details:after {
+    display: none;
+}
+
+div.node.has-children:hover {
+  border: 1px solid #777;
+ 
+}
+
+div.selected,
+div.selected.has-children {
+    background-color: #FAFAD2 !important;
+    border-color: #DAA520 !important;
+    cursor: default !important;
+}
+
+div.selected div.area {
+    background-color: #ecd28f !important;
+    border-bottom-color: #DAA520 !important;
+    color: #222;
+}
+
+div.node a {
+    color: #0F86A4;
+    text-decoration: none;
+}
+
+div.node div.name a {
+    font-size: 9pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+div.node a:hover {
+    color: #11639D;
+    text-decoration: underline;
+}
+
+div.node div {
+    line-height: 9pt;
+}
+
+
+
+
+
+/** EMPLOYEE AUTOCOMPLETE WIDGET *********************************************/
+.ac_results {
+  padding: 0px;
+  border: 1px solid #bbb;
+  background-color: white;
+  color: #333;
+  overflow: hidden;
+  z-index: 99999;
+}
+
+.ac_results ul {
+  width: 100%;
+  list-style-position: outside;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ac_results li {
+  margin: 0px;
+  padding: 2px 5px;
+  cursor: default;
+  display: block;
+  font-size: 9pt;
+  line-height: 18px;
+  overflow: hidden;
+}
+
+.ac_results li:hover {
+  cursor: pointer;
+}
+
+.ac_results li strong {
+  font-size: 10pt;
+  font-weight: bold;
+}
+
+.ac_odd {
+  background-color: #eee;
+}
+
+.ac_over {
+  background-color: #222;
+  color: white;
+}
+
+.employee-lookup-widget {
+  height: 5em;
+}
+
+.selected-employee {
+  margin-left: 10px;
+  margin-top: 8px;
+}
+
+.selected-employee .change {
+  bottom: 1px;
+  margin-left: 8px;
+  position: relative;
+  font-size: 8pt;
+}
+
+.selected-employee .name {
+  font-size: 90%;
+  font-weight: bold;
+}
+
+.selected-employee .area-dept {
+  color: #444;
+  font-size: 90%;
+}

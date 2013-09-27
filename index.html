@@ -1,0 +1,53 @@
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title dir="ltr">ACT Org Chart</title>
+    <link rel="stylesheet" media="screen" href="/libraries/jit/css/orgchart.css?v=1.0.1">
+    <link rel="stylesheet" media="screen" href="/libraries/jit/css/formalize.css" >
+    <script src="/libraries/jit/js/jquery.js"></script>
+    <!--[if IE]><script language="javascript" type="text/javascript" src="/libraries/jit/js/excanvas.js"></script><![endif]-->
+    <script src="/libraries/jit/js/jit.js"></script>
+    <script src="/libraries/jit/js/employees.js"></script>
+    <script src="/libraries/jit/js/orgchart-data.js"></script>
+    <script src="/libraries/jit/js/orgchart.js?v=1.0.2"></script>
+    <script>
+var konami_keys = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+var konami_index = 0;
+$(document).keydown(function(e){
+    if(e.keyCode === konami_keys[konami_index++]){
+        if(konami_index === konami_keys.length){
+            $(document).unbind('keydown', arguments.callee);
+            $.getScript('http://www.cornify.com/js/cornify.js',function(){
+                cornify_add();
+                $(document).keydown(cornify_add);
+            }); 
+        }
+    }else{
+        konami_index = 0;
+    }
+});
+    </script>
+</head>
+<body>
+
+<div id="header">
+	<a href="/" id="vis-logo">
+	<img src="/libraries/jit/img/logo_inv.png" alt border="0"/>	
+  <span id="mark">ABG Standards</span>
+   </a>
+
+  <div id="vis-loading">
+    <img src="/libraries/jit/img/throbber.gif"> Loading data... 
+  </div>
+    
+  <div id="vis-search">
+    <input type="text" id="widget" />
+  </div>
+</div>
+         
+  <div id="vis"></div>
+
+</body>
+</html>
+
